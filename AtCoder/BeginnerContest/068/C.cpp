@@ -1,53 +1,62 @@
 #include <iostream>
 #include <cmath>
 #include <vector>
-#include <string>
-#include <map>
+#include <queue>
 #include <algorithm>
 
 using namespace std;
 
 #define INF 1e9
 #define MAXN 100005
-#define MAXM 100005
+#define MAXM 200005
 #define ll long long
 #define vi vector<int>
 #define vll vector<long long>
 #define rep(i,n) for(int i=0, i##_len=(n); i<i##_len; ++i)
 #define pii pair<int, int>
 
-int N, cnt = 0, k = 0;
-vi As;
-map<int, int> mp;
+int N, M, a[MAXM], b[MAXM],  cur, tmp, level = 0;
+vi d[MAXM] = {}, dist(MAXM, -1);
+queue<int> q;
 
-void solve(){
-    sort(As.begin(), As.end());
+void dfs(){
+    q.push(0);
+    dist[0] = 0;
 
-    for(auto itr = mp.begin(); itr!=mp.end(); ++itr){
-        if(itr->second % 2 == 1){
-            itr->second = 1;
-        } else {
-            itr->second = 2;
-            k++;
+    while(!q.empty()){
+        cur = q.front();
+        q.pop();
+        
+        rep(i, d[cur].size()){
+            tmp = d[cur][i];
+            if(dist[tmp]==-1){
+                // cout << tmp << " ";
+                q.push(tmp);
+                dist[tmp] = dist[cur] + 1;
+            }
         }
-        cnt += itr->second;
-        // cout << itr->first << " " << itr->second << endl;
-    }
-    cnt -= k;
-    if(k % 2 == 1 && cnt >= 3){
-        cout << cnt - 1 << endl;
-    } else {
-        cout << cnt << endl;
+        // cout << endl;
     }
 }
 
-int main(){
-    cin >> N;
-    As.resize(N);
+void solve(){
+    dfs();
 
-    rep(i, N){
-        cin >> As[i];
-        mp[As[i]]++;
+    if(dist[N-1]==2)
+        cout << "POSSIBLE" << endl;
+    else
+        cout << "IMPOSSIBLE" << endl;
+}
+
+int main(){
+    cin >> N >> M;
+
+    rep(i,M){
+        cin >> a[i] >> b[i];
+        a[i]--;
+        b[i]--;
+        d[a[i]].push_back(b[i]);
+        d[b[i]].push_back(a[i]);
     }
 
     solve();
