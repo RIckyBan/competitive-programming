@@ -15,27 +15,20 @@ using namespace std;
 #define rep(i,n) for(int i=0, i##_len=(n); i<i##_len; ++i)
 #define pii pair<int, int>
 
-ll S;
-int a, b;
-
-
 
 void solve(){
-    for(ll i = sqrt(S); 0 < i; --i){
-        if(S % i == 0){
-            a = i, b = S / i;
-            break;
-        }
-    }
-
-    cout << 0 << " " << 0 << " ";
-    cout << a << " " << 0 << " ";
-    cout << 0 << " " << b << endl;
-
+	ll s;
+	cin >> s;
+	
+	const int v=1000000000;
+	
+	int x=(v-s%v)%v;
+	int y=(s+x)/v;
+	
+	cout<<"0 0 1000000000 1 " << x << " " << y <<endl;
 }
 
 int main(){
-    cin >> S;
 
     solve();
 }
