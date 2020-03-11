@@ -22,8 +22,8 @@ void solve(){
 	
 	const int v=1000000000;
 	
-	int x=(v-s%v)%v;
-	int y=(s+x)/v;
+	int y=ceil((long double)s/(long double)v);
+	int x=v*y-s;
 	
 	cout<<"0 0 1000000000 1 " << x << " " << y <<endl;
 }
