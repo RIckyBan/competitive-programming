@@ -15,36 +15,28 @@ using namespace std;
 #define rep(i,n) for(int i=0, i##_len=(n); i<i##_len; ++i)
 #define pii pair<int, int>
 
-ll ans;
-int A,B,C;
-string S;
-bool flag = true;
+ll A, B, C, D;
+bool flag = false;
 
 void solve(){
-   rep(i, S.length()){
-       if(i%2==0){
-           if(S[i]!='h'){
-            flag = false;
-            break;
-           }
-       } else {
-           if(S[i]!='i'){
-            flag = false;
-            break;
-           }
-       }
-   }
-    if(S[S.length()-1]=='h')
-        flag = false;
+    D = C - A - B;
+    
+    cout << pow(D, 2) << endl;
+    cout << D * D << endl;
+    
+    if(D > 0 && 4*A*B < D*D) {
+        flag = true;
+    }
 
-   if(flag)
-       cout << "Yes" << endl;
+    if(flag)
+        cout << "Yes" << endl;
     else
         cout << "No" << endl;
+
 }
 
 int main(){
-    cin >> S;
+    cin >> A >> B >> C;
 
     solve();
 }
