@@ -1,9 +1,23 @@
-// test: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_A&lang=jp
-
-#include<iostream>
-#include<vector>
+#include <iostream>
+#include <cmath>
+#include <vector>
+#include <string>
+#include <algorithm>
 
 using namespace std;
+
+#define INF 1e9
+#define MAXN 100005
+#define MAXK 100005
+#define ll long long
+#define vi vector<int>
+#define vll vector<long long>
+#define rep(i,n) for(int i=0, i##_len=(n); i<i##_len; ++i)
+#define pii pair<int, int>
+
+ll ans;
+int N, M, K, A[MAXN], B[MAXN], C[MAXK], D[MAXK];
+vi curr_friend[MAXN], block_list[MAXN];
 
 class UnionFind {
     public:
@@ -34,7 +48,7 @@ class UnionFind {
         return findSet(x) == findSet(y);
     }
 
-    void unite(int x, int y){
+    void unite(int x, int y){ // linkを呼び出す
         link(findSet(x), findSet(y));
     }
 
@@ -56,20 +70,46 @@ class UnionFind {
     }
 };
 
-int main(){
-    int n, a, b, q, t;
+void solve(){
+    UnionFind UF = UnionFind(N);
 
-    cin >> n >> q;
-    UnionFind UF = UnionFind(n);
-
-    for(int i=0; i < q; i++){
-        cin >> t >> a >> b;
-        if(t==0) UF.unite(a, b);
-        else if(t==1){
-            if(UF.same(a, b)) cout << 1 << endl;
-            else cout << 0 << endl;
-        }
+    rep(i, M){
+        // cout << "unite A of size " << UF.getSize(A[i]);
+        // cout << " and B of size " << UF.getSize(B[i]) << endl;
+        if(!UF.same(A[i], B[i]))
+            UF.unite(A[i], B[i]);
     }
 
-    return 0;
+    // rep(i, N)
+    //     cout << curr_friend[i].size() << endl;
+
+    rep(i, N){
+        int ans = UF.getSize(i) - 1 - curr_friend[i].size();
+        for(auto v: block_list[i]){
+            if(UF.same(i, v)) ans--;
+        }
+        cout << ans << endl;
+    }
+
+
+}
+
+int main(){
+    cin >> N >> M >> K;
+
+    rep(i, M){
+        cin >> A[i] >> B[i];
+        A[i]--, B[i]--;
+        curr_friend[A[i]].push_back(B[i]);
+        curr_friend[B[i]].push_back(A[i]);
+    }
+
+    rep(i, K){
+        cin >> C[i] >> D[i];
+        C[i]--, D[i]--;
+        block_list[D[i]].push_back(C[i]);
+        block_list[C[i]].push_back(D[i]);
+    }
+
+    solve();
 }
