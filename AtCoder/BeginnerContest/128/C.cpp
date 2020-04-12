@@ -40,7 +40,7 @@ void solve(){
 
         if(flag){
             ans++;
-            cout << bitset<10>(i) << endl;
+            // cout << bitset<10>(i) << endl;
         } 
     }
 
@@ -57,7 +57,7 @@ int main(){
         rep(j, K[i]){
             cin >> tmp;
             tmp--;
-            S[i].push_back(tmp);
+            S[tmp].push_back(i);
         }
     }
 

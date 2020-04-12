@@ -18,7 +18,8 @@ using namespace std;
 int A,B;
 
 void solve(){
-	cout << (B - 2)/(A-1) + 1 << endl;
+    if(B == 1) cout << 0 << endl;
+    else cout << (B - 2)/(A-1) + 1 << endl;
 }
 
 int main(){

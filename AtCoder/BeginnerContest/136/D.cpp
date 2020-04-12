@@ -54,17 +54,18 @@ void solve(){
             vec[i*2] = tmp/2;
             vec[i*2+1] = tmp/2;
         } else {
+            if(max(vec[i*2]-1, vec[i*2+1]-1) % 2 != 0){
+                swap(vec[i*2], vec[i*2+1]);
+            }
+
             if(vec[i*2] > vec[i*2+1]){
                 vec[i*2] = (tmp+1)/2;
                 vec[i*2+1] = (tmp-1)/2;
-
-                if(vec[i*2] % 2 == 0) swap(vec[i*2], vec[i*2+1]);
             } else {
-                vec[i*2] = (tmp-1)/2;
                 vec[i*2+1] = (tmp+1)/2;
-
-                if(vec[i*2+1] % 2 == 0) swap(vec[i*2], vec[i*2+1]);
+                vec[i*2] = (tmp-1)/2; 
             }
+
         }
     }
 
