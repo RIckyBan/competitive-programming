@@ -9,6 +9,7 @@ using namespace std;
 #define INF 1e9
 #define MAXN 100005
 #define MAXM 100005
+#define MOD 1000000007
 #define ll long long
 #define vi vector<int>
 #define vll vector<long long>
