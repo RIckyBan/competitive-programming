@@ -20,7 +20,6 @@ class UnionFind {
     void makeSet(int x){// 各ノードの親を自分自身で初期化
         p[x] = x;
         rank[x] = 0;
-        size[x] = 1;
     }
 
     int findSet(int x){
@@ -41,19 +40,14 @@ class UnionFind {
     void link(int x, int y){ // 親が管理する集合を連結
         if(rank[x] > rank[y]){ // rankが小さい方の親を、大きい方の子とする
             p[y] = x;
-            size[x] += size[y]; // sizeを更新
         } else {
             p[x] = y;
-            size[y] += size[x];
             if(rank[x] == rank[y]){ // rankが等しければインクリメントする
                 rank[y]++;
             }
         }
     }
 
-    int getSize(int x){
-        return size[findSet(x)];
-    }
 };
 
 int main(){
