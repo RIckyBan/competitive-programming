@@ -1,0 +1,24 @@
+{
+	"tasks": [
+	  {
+		"type": "shell",
+		"label": "g++-7 build active file",
+		"group": {
+		  "kind": "build",
+		  "isDefault": true
+		},
+		"command": "/usr/bin/g++-7",
+		"args": [
+		  "-g",
+		  "-o",
+		  "${fileDirname}/a.out",
+		  "-std=c++14",
+		  "${file}"
+		],
+		"problemMatcher": [
+		  "$gcc"
+		]
+	  }
+	],
+	"version": "2.0.0"
+  }
