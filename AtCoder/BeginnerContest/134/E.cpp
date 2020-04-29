@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cmath>
 #include <vector>
-#include <string>
 #include <algorithm>
 
 using namespace std;
@@ -14,7 +13,8 @@ using namespace std;
 
 ll N;
 int tmp,val,maxc;
-vi As, colors;
+vi As;
+vi colors;
 
 void solve(){
     for(int i = N-1; i >=0; --i){
@@ -24,14 +24,13 @@ void solve(){
             continue;
         }
 
-        sort(colors.begin(), colors.end());
-        maxc = colors[colors.size()-1];
-        // printf("maxc is %d\n",maxc);
-
-        if(val < maxc)
-            colors.pop_back();
-
-        colors.push_back(val);
+        auto itr = upper_bound(colors.begin(), colors.end(), val);
+        int id = itr - colors.begin();
+        // cout << id << endl;
+        if(id == colors.size()) colors.push_back(val);
+        else{
+            colors[id] = val;
+        }
     }
 
     cout << colors.size() << endl;
