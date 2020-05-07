@@ -19,14 +19,19 @@ using namespace std;
 ll ans;
 int X,N;
 
-ll modPow(ll x,ll n,ll mod=MOD){
-    if(n==0)return 1;
-    if(n%2==0)return modPow(x*x,n/2,mod)%mod;
-    return x%mod*modPow(x,n-1,mod)%mod;
+// a^n mod を計算する
+long long modpow(long long a, long long n, long long mod=MOD) {
+    long long res = 1;
+    while (n > 0) {
+        if (n & 1) res = res * a % mod;
+        a = a * a % mod;
+        n >>= 1;
+    }
+    return res;
 }
 
 int main(){
     cin >> X >> N;
 
-    cout << modPow(X, N) << endl;
+    cout << modpow(X, N) << endl;
 }
