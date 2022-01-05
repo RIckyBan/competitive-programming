@@ -16,8 +16,8 @@ using namespace std;
 #define rep(i,n) for(int i=0, i##_len=(n); i<i##_len; ++i)
 #define pii pair<int, int>
 
-ll ans;
-int A,B,C;
+ll ans = 0;
+ll A,B,C;
 
 void solve(){
 
