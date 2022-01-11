@@ -1,5 +1,4 @@
 #include <functional>
-
 #include <iostream>
 
 void recursive_comb(int *indexes, int s, int rest, std::function<void(int *)> f)
